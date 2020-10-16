@@ -1,0 +1,31 @@
+{
+  "name": "insomnia-plugin-api-testing",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "insomnia": {
+    "name": "api-testing",
+    "displayName": "API Testing",
+    "description": "Run automated tests!",
+    "publisher": {
+      "name": "Hammed Oyedele",
+      "icon": "https://github.com/devhammed.png"
+    },
+    "applications": {
+      "core": "*"
+    }
+  },
+  "scripts": {
+    "dev": "parcel watch -o index.js --no-source-maps src/index.js",
+    "build": "parcel build -o index.js --no-source-maps src/index.js"
+  },
+  "dependencies": {
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "styled-components": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.1"
+  }
+}
