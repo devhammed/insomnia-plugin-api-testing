@@ -5,7 +5,7 @@
   "insomnia": {
     "name": "api-testing",
     "displayName": "API Testing",
-    "description": "Run automated tests!",
+    "description": "Run automated tests for your API in Insomnia.",
     "publisher": {
       "name": "Hammed Oyedele",
       "icon": "https://github.com/devhammed.png"
