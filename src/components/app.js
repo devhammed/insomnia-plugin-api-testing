@@ -31,7 +31,7 @@ function App ({ context, data }) {
       <Editor
         value={code}
         padding={10}
-        id='code-editor'
+        className='code-editor'
         onValueChange={handleCodeChange}
         highlight={code => highlight(code, languages.js)}
       />
@@ -44,22 +44,18 @@ function App ({ context, data }) {
       </button>
       <style>
         {`
-          #code-editor {
+          .api-testing-code-editor {
+            padding: 20px;
+          }
+
+          .api-testing-code-editor .code-editor {
             font-size: 16px;
             border-radius: 5px;
             border: 2px solid #666;
             font-family: "Fira Code", "Fira Mono", monospace;
           }
 
-          .api-testing-code-editor {
-            padding: 20px;
-          }
-
-          .code-editor-label {
-            margin-bottom: 10px;
-          }
-
-          .runner-button {
+          .api-testing-code-editor .runner-button {
             margin-top: 20px;
             font-weight: 500;
             font-size: 16px;
@@ -68,82 +64,82 @@ function App ({ context, data }) {
             padding: 10px 20px;
           }
 
-          .runner-button:hover {
+          .api-testing-code-editor .runner-button:hover {
             opacity: 0.8;
           }
 
-          .token.comment,
-          .token.block-comment,
-          .token.prolog,
-          .token.doctype,
-          .token.cdata {
+          .api-testing-code-editor .token.comment,
+          .api-testing-code-editor .token.block-comment,
+          .api-testing-code-editor .token.prolog,
+          .api-testing-code-editor .token.doctype,
+          .api-testing-code-editor .token.cdata {
             color: #999;
           }
 
-          .token.punctuation {
+          .api-testing-code-editor .token.punctuation {
             color: #ccc;
           }
 
-          .token.tag,
-          .token.attr-name,
-          .token.namespace,
-          .token.deleted {
+          .api-testing-code-editor .token.tag,
+          .api-testing-code-editor .token.attr-name,
+          .api-testing-code-editor .token.namespace,
+          .api-testing-code-editor .token.deleted {
             color: #e2777a;
           }
 
-          .token.function-name {
+          .api-testing-code-editor .token.function-name {
             color: #6196cc;
           }
 
-          .token.boolean,
-          .token.number,
-          .token.function {
+          .api-testing-code-editor .token.boolean,
+          .api-testing-code-editor .token.number,
+          .api-testing-code-editor .token.function {
             color: #f08d49;
           }
 
-          .token.property,
-          .token.class-name,
-          .token.constant,
-          .token.symbol {
+          .api-testing-code-editor .token.property,
+          .api-testing-code-editor .token.class-name,
+          .api-testing-code-editor .token.constant,
+          .api-testing-code-editor .token.symbol {
             color: #f8c555;
           }
 
-          .token.selector,
-          .token.important,
-          .token.atrule,
-          .token.keyword,
-          .token.builtin {
+          .api-testing-code-editor .token.selector,
+          .api-testing-code-editor .token.important,
+          .api-testing-code-editor .token.atrule,
+          .api-testing-code-editor .token.keyword,
+          .api-testing-code-editor .token.builtin {
             color: #cc99cd;
           }
 
-          .token.string,
-          .token.char,
-          .token.attr-value,
-          .token.regex,
-          .token.variable {
+          .api-testing-code-editor .token.string,
+          .api-testing-code-editor .token.char,
+          .api-testing-code-editor .token.attr-value,
+          .api-testing-code-editor .token.regex,
+          .api-testing-code-editor .token.variable {
             color: #7ec699;
           }
 
-          .token.operator,
-          .token.entity,
-          .token.url {
+          .api-testing-code-editor .token.operator,
+          .api-testing-code-editor .token.entity,
+          .api-testing-code-editor .token.url {
             color: #67cdcc;
           }
 
-          .token.important,
-          .token.bold {
+          .api-testing-code-editor .token.important,
+          .api-testing-code-editor .token.bold {
             font-weight: bold;
           }
 
-          .token.italic {
+          .api-testing-code-editor .token.italic {
             font-style: italic;
           }
 
-          .token.entity {
+          .api-testing-code-editor .token.entity {
             cursor: help;
           }
 
-          .token.inserted {
+          .api-testing-code-editor .token.inserted {
             color: green;
           }
         `}
