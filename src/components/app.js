@@ -51,7 +51,7 @@ function App ({ context, data }) {
           .api-testing-code-editor .code-editor {
             font-size: 16px;
             border-radius: 5px;
-            border: 2px solid #666;
+            border: 1px solid #666;
             font-family: "Fira Code", "Fira Mono", monospace;
           }
 
