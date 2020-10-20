@@ -19,8 +19,10 @@
     "build": "parcel build -o index.js --no-source-maps src/index.js"
   },
   "dependencies": {
+    "prismjs": "^1.22.0",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react-dom": "^16.14.0",
+    "react-simple-code-editor": "^0.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.1",
