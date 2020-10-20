@@ -12,7 +12,6 @@ export const requestGroupActions = [
       ReactDOM.render(<App context={context} data={data} />, root)
 
       context.app.dialog(`API Testing (${data.requestGroup.name})`, root, {
-        skinny: true,
         onHide () {
           ReactDOM.unmountComponentAtNode(root)
         }
