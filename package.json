@@ -15,10 +15,11 @@
     }
   },
   "scripts": {
-    "dev": "parcel watch -o index.js --no-source-maps src/index.js",
-    "build": "parcel build -o index.js --no-source-maps src/index.js"
+    "dev": "parcel watch -o index.js src/index.js",
+    "build": "parcel build -o index.js src/index.js"
   },
   "dependencies": {
+    "chai": "^4.2.0",
     "prismjs": "^1.22.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
