@@ -45,14 +45,17 @@ export default function testRunner (setLogs, sendRequest, requests, code) {
     // The test queue:
     const tests = []
 
-    // Function to add tests:
-    ins.test = function test (index, name, test) {
-      tests.push({ index, name, test })
-    }
-
-    // Function to add grouped tests:
+    // Function to add tests for requests:
     ins.testsFor = function testsFor (index, runner) {
-      runner((name, test) => ins.test(index, name, test))
+      if (typeof runner !== 'function') {
+        return logger.invalid(
+          '🤔 Invalid Request Test Runner',
+          `Request with index ${testToRun.index} test runner is not a function`,
+          index
+        )
+      }
+
+      runner((name, test) => tests.push({ index, name, test }))
     }
 
     // BDD style assertion:
