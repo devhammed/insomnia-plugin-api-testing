@@ -78,7 +78,7 @@ export default function testRunner (
         return { ...globals }
       },
       get (key, def = undefined) {
-        return globals[key] ?? def
+        return globals[key] ? globals[key] : def
       },
       set (key, value) {
         return (globals[key] = value)
