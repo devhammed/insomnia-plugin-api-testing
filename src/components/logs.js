@@ -1,14 +1,15 @@
 import React from 'react'
+import Log from './log'
 
 function Logs ({ logs }) {
   return logs.map(({ name, results }, index) => (
-    <details open key={index}>
-      <summary>{name}</summary>
+    <details open className='request' key={index}>
+      <summary>
+        #{index}. {name}
+      </summary>
       <ul className='logs'>
-        {results.map(({ type, name, msg }, index) => (
-          <li className='log' key={index}>
-            [{type}]: {name} {msg ? `(${msg})` : null}
-          </li>
+        {results.map((log, index) => (
+          <Log key={index} {...log} />
         ))}
       </ul>
     </details>

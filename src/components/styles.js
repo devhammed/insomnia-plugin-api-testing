@@ -8,8 +8,46 @@ function Styles () {
             padding: 20px;
           }
 
+          .api-testing-code-editor .request {
+            margin-bottom: 25px;
+          }
+
+          .api-testing-code-editor .logs {
+            margin-top: 15px;
+          }
+
           .api-testing-code-editor .logs .log {
-            margin-bottom: 5px;
+            font-size: 14px;
+          }
+
+          .api-testing-code-editor .logs .log:not(:last-child) {
+            margin-bottom: 20px;
+          }
+
+          .api-testing-code-editor .logs .log-type {
+            display: inline;
+            padding: 5px 10px;
+            background-color: #777;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25em;
+          }
+
+          .api-testing-code-editor .logs .log-type-PASS {
+              background-color: #5cb85c;
+          }
+
+          .api-testing-code-editor .logs .log-type-INVALID {
+              background-color: #f0ad4e;
+          }
+
+          .api-testing-code-editor .logs .log-type-FAIL {
+              background-color: #d9534f;
           }
 
           .api-testing-code-editor .code-editor {

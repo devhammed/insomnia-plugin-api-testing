@@ -32,7 +32,6 @@ export default function testRunner (setLogs, sendRequest, requests, code) {
     const logger = {
       pass: makeLogger('PASS', setLogs, requests, logs),
       fail: makeLogger('FAIL', setLogs, requests, logs),
-      skip: makeLogger('SKIPPED', setLogs, requests, logs),
       invalid: makeLogger('INVALID', setLogs, requests, logs)
     }
 
@@ -49,7 +48,7 @@ export default function testRunner (setLogs, sendRequest, requests, code) {
     ins.testsFor = function testsFor (index, runner) {
       if (typeof runner !== 'function') {
         return logger.invalid(
-          '🤔 Invalid Request Test Runner',
+          'Invalid Request Test Runner',
           `Request with index ${testToRun.index} test runner is not a function`,
           index
         )
@@ -100,7 +99,7 @@ export default function testRunner (setLogs, sendRequest, requests, code) {
         // Log status for last test run:
         if (testToRun) {
           logger[err ? 'fail' : 'pass'](
-            `${err ? '❌' : '✅'} ${testToRun.name}`,
+            testToRun.name,
             err ? err.message : '',
             testToRun.index
           )
@@ -115,7 +114,7 @@ export default function testRunner (setLogs, sendRequest, requests, code) {
 
           if (typeof request === 'undefined') {
             logger.invalid(
-              '🤔 Invalid Request Index',
+              'Invalid Request Index',
               `Request with index ${testToRun.index} does not exist`,
               testToRun.index
             )
