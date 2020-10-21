@@ -15,8 +15,8 @@
     }
   },
   "scripts": {
-    "dev": "parcel watch -t electron -o index.js src/index.js",
-    "build": "parcel build -t electron -o index.js src/index.js"
+    "dev": "parcel watch -t electron --no-source-maps -o index.js src/index.js",
+    "build": "parcel build -t electron --no-source-maps -o index.js src/index.js"
   },
   "dependencies": {
     "chai": "^4.2.0",
