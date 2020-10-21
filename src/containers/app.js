@@ -5,7 +5,7 @@ import Styles from '../components/styles'
 import Editor from '../components/editor'
 import testRunner from '../utils/test-runner'
 
-function App ({ context, data }) {
+function App ({ readFile, context, data }) {
   const [logs, setLogs] = useState([])
   const [code, setCode] = useState('')
   const [running, setRunning] = useState(false)
@@ -20,7 +20,13 @@ function App ({ context, data }) {
   const handleRunTests = async () => {
     setRunning(true)
 
-    await testRunner(setLogs, context.network.sendRequest, data.requests, code)
+    await testRunner(
+      setLogs,
+      readFile,
+      context.network.sendRequest,
+      data.requests,
+      code
+    )
 
     setShowEditText(true)
   }

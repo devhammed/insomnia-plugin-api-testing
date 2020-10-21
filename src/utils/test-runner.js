@@ -1,7 +1,7 @@
 import chai from 'chai'
 
-function makeLogger (type, setLogs, requests, logs) {
-  return (name, msg, index) => {
+function makeLogger (setLogs, requests, logs) {
+  return type => (name, msg, index) => {
     const request = requests[index]
 
     if (typeof logs[index] === 'undefined') {
@@ -23,16 +23,25 @@ function makeLogger (type, setLogs, requests, logs) {
   }
 }
 
-export default function testRunner (setLogs, sendRequest, requests, code) {
+export default function testRunner (
+  setLogs,
+  readFile,
+  sendRequest,
+  requests,
+  code
+) {
   return new Promise(resolve => {
     // Test logs:
     const logs = []
 
+    // Logger Factory instance:
+    const loggerFactory = makeLogger(setLogs, requests, logs)
+
     // Test Logger methods:
     const logger = {
-      pass: makeLogger('PASS', setLogs, requests, logs),
-      fail: makeLogger('FAIL', setLogs, requests, logs),
-      invalid: makeLogger('INVALID', setLogs, requests, logs)
+      pass: loggerFactory('PASS'),
+      fail: loggerFactory('FAIL'),
+      invalid: loggerFactory('INVALID')
     }
 
     // The test globals:
@@ -124,13 +133,56 @@ export default function testRunner (setLogs, sendRequest, requests, code) {
 
           const response = await sendRequest(request)
 
-          // Setup the assertions for the current test:
+          // Setup the response assertions for the current test:
           ins.response = {
+            response: response,
             url: ins.expect(response.url),
-            headers: ins.expect(response.headers),
+            headers: ins.expect(
+              // convert array of objects to an object
+              response.headers.reduce((acc, { name, value }) => {
+                if (name in acc) {
+                  if (typeof acc[name] === 'string') {
+                    acc[name] = [acc[name], value]
+                  } else {
+                    acc[name].push(value)
+                  }
+                } else {
+                  acc[name] = value
+                }
+
+                return acc
+              }, {})
+            ),
+            body: {
+              text: (() => {
+                try {
+                  const data = readFile(response.bodyPath, 'utf8')
+
+                  ins.response.body._data = data
+
+                  return ins.expect(data)
+                } catch (e) {
+                  return ins.expect(null)
+                }
+              })(),
+              json: (() => {
+                try {
+                  return ins.expect(JSON.parse(ins.response.body._data))
+                } catch (e) {
+                  return ins.expect(null)
+                }
+              })()
+            },
             status: ins.expect(response.statusCode),
+            size: ins.expect(response.bytesContent),
             elapsedTime: ins.expect(response.elapsedTime),
+            contentType: ins.expect(response.contentType),
             statusText: ins.expect(response.statusMessage)
+          }
+
+          // Setup the request assertions for the current test:
+          ins.request = {
+            request: request
           }
 
           // Run the test callback:
