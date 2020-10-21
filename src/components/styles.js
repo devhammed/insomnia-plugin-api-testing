@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AppStyles () {
+function Styles () {
   return (
     <style>
       {`
@@ -107,4 +107,4 @@ function AppStyles () {
   )
 }
 
-export default AppStyles
+export default Styles

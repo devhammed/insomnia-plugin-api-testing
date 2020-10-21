@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
 import Logs from '../components/logs'
+import Styles from '../components/styles'
 import Editor from '../components/editor'
 import testRunner from '../utils/test-runner'
-import AppStyles from '../components/app-styles'
 
 function App ({ context, data }) {
   const [logs, setLogs] = useState([])
@@ -52,7 +52,7 @@ function App ({ context, data }) {
           </button>
         )}
       </div>
-      <AppStyles />
+      <Styles />
     </>
   )
 }
