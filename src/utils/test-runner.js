@@ -19,7 +19,7 @@ function makeLogger (setLogs, requests, logs) {
 
     logs[index].results.push(log)
 
-    setLogs(logs)
+    setLogs([...logs])
   }
 }
 
