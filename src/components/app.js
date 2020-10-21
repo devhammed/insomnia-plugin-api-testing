@@ -4,6 +4,8 @@ import { highlight, languages } from 'prismjs/components/prism-core'
 import 'prismjs/components/prism-clike'
 import 'prismjs/components/prism-javascript'
 
+import testRunner from '../utils/testRunner'
+
 function App ({ context, data }) {
   const codeStoreKey = `${data.requestGroup._id}_api_testing`
 
@@ -17,7 +19,16 @@ function App ({ context, data }) {
 
   const handleRunTests = async () => {
     setRunning(true)
-    setTimeout(() => setRunning(false), 1000)
+
+    const testResults = await testRunner(
+      context.network.sendRequest,
+      data.requests,
+      code
+    )
+
+    console.log(testResults)
+
+    setRunning(false)
   }
 
   useEffect(() => {
