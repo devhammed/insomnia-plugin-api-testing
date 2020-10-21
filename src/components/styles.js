@@ -8,7 +8,7 @@ function Styles () {
             padding: 20px;
           }
 
-          .api-testing-code-editor .request {
+          .api-testing-code-editor .request:not(:last-of-type) {
             margin-bottom: 25px;
           }
 
@@ -18,6 +18,7 @@ function Styles () {
 
           .api-testing-code-editor .logs .log {
             font-size: 14px;
+            line-height: 1.6;
           }
 
           .api-testing-code-editor .logs .log:not(:last-child) {
