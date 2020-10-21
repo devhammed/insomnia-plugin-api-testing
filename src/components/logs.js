@@ -4,9 +4,9 @@ function Logs ({ logs }) {
   return logs.map(({ name, results }, index) => (
     <details open key={index}>
       <summary>{name}</summary>
-      <ul>
+      <ul className='logs'>
         {results.map(({ type, name, msg }, index) => (
-          <li key={index}>
+          <li className='log' key={index}>
             [{type}]: {name} {msg ? `(${msg})` : null}
           </li>
         ))}

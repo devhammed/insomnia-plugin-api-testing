@@ -8,6 +8,10 @@ function Styles () {
             padding: 20px;
           }
 
+          .api-testing-code-editor .logs .log {
+            margin-bottom: 5px;
+          }
+
           .api-testing-code-editor .code-editor {
             font-size: 16px;
             border-radius: 5px;
