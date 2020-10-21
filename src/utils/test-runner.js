@@ -1,6 +1,6 @@
 import chai from 'chai'
 
-function makeLogger (type, requests, logs) {
+function makeLogger (type, setLogs, requests, logs) {
   return (name, msg, index) => {
     const request = requests[index]
 
@@ -18,20 +18,22 @@ function makeLogger (type, requests, logs) {
     }
 
     logs[index].results.push(log)
+
+    setLogs(logs)
   }
 }
 
-export default function testRunner (sendRequest, requests, code) {
+export default function testRunner (setLogs, sendRequest, requests, code) {
   return new Promise(resolve => {
     // Test logs:
     const logs = []
 
     // Test Logger methods:
     const logger = {
-      pass: makeLogger('PASS', requests, logs),
-      fail: makeLogger('FAIL', requests, logs),
-      skip: makeLogger('SKIPPED', requests, logs),
-      invalid: makeLogger('INVALID', requests, logs)
+      pass: makeLogger('PASS', setLogs, requests, logs),
+      fail: makeLogger('FAIL', setLogs, requests, logs),
+      skip: makeLogger('SKIPPED', setLogs, requests, logs),
+      invalid: makeLogger('INVALID', setLogs, requests, logs)
     }
 
     // The test globals:
@@ -54,9 +56,10 @@ export default function testRunner (sendRequest, requests, code) {
     }
 
     // BDD style assertion:
-    ins.expect = function expect (assertion, message) {
-      return chai.expect(assertion, message)
-    }
+    ins.expect = chai.expect
+
+    // Throw a failure:
+    ins.fail = chai.expect.fail
 
     // Test Globals:
     ins.globals = {
