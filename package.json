@@ -23,9 +23,9 @@
   },
   "scripts": {
     "clean": "rm -rf dist .cache",
-    "prepublishOnly": "npm run clean && npm run build",
+    "prepublishOnly": "npm run build",
     "dev": "parcel watch -t electron --no-source-maps -o index.js src/index.js",
-    "build": "parcel build -t electron --no-source-maps -o index.js src/index.js"
+    "build": "npm run clean && parcel build -t electron --no-source-maps -o index.js src/index.js"
   },
   "dependencies": {
     "chai": "^4.2.0",
